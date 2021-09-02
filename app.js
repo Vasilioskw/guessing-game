@@ -1,34 +1,38 @@
-// var, let, const
-let numberOfSheep; // Camel Case a-z A-Z 0-9 _ $
-numberOfSheep = 20;
 
-console.log(numberOfSheep);
+$(document).ready(function () {
 
 
-
-
-
-
-$(document).ready(function() {
-  function myFunction(guess) {
-    
-    
-  }
-
- 
-
+    function generateRandomNumber() {
+      let myRandomNumber = Math.floor(Math.random() * 100 + 1);
+      console.log('myRandomNumber', myRandomNumber);
+      return myRandomNumber;
+    }
   
-  // =====================================================
-  // This code uses jQuery, a javascript library, to run.
-  // You don't need to know how this works,
-  // just that it makes the submit button function.
-  $("form").submit(function(event) {
-    event.preventDefault();
-    var valueA = $("#js-user-input-a").val();
-    var valueB = $("#js-user-input-b").val();
+  
+    let randomNumber = generateRandomNumber();
+  
+    function checkGuess(guess) {
+      // Write your code here
+      guess = Number(guess); //ParseInt()
+      if (guess === randomNumber) {
+        console.log('yay');
+        return 'Yay';
+      } else { 
+        console.log('boo');
+        return 'Boo, guess again';
+      }
+    }
+  
+    $('.guessingForm').submit(function (event) {
+      event.preventDefault();
+      var guess = $('#js-user-guess').val();
+      $('#js-user-guess').val('');
     
-    let result = myFunction();
-    // let result = concat(valueA, valueB);
-    $(".resultText").text(result);
+      let answer = checkGuess(guess);
+      $('.responseText').text(answer);
+      
+    });
+    
   });
-});
+
+
